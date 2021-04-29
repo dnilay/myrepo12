@@ -37,4 +37,11 @@ public class StudentServiceImpl implements StudentService{
 		return studentDao.createStudent(student);
 	}
 
+
+	@Override
+	public Student findStudentById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return studentDao.findStudentById(id);
+	}
+
 }

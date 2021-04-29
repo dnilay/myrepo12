@@ -9,5 +9,6 @@ public interface StudentDao {
 	public Collection<Student> displayAllStudent();
 	
 	public Student createStudent(Student student);
+	public Student findStudentById(Integer id) throws Exception;
 
 }

@@ -36,4 +36,15 @@ public class StudentDaoImpl implements StudentDao {
 		return student;
 	}
 
+	@Override
+	public Student findStudentById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		Student student=studentCollections.get(id);
+		if(student==null)
+		{
+			throw new Exception();
+		}
+		return student;
+	}
+
 }
