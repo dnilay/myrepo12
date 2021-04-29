@@ -7,5 +7,7 @@ import com.example.demo.model.Student;
 public interface StudentDao {
 	
 	public Collection<Student> displayAllStudent();
+	
+	public Student createStudent(Student student);
 
 }

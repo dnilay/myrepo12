@@ -29,4 +29,11 @@ public class StudentDaoImpl implements StudentDao {
 		return studentCollections.values();
 	}
 
+	@Override
+	public Student createStudent(Student student) {
+		// TODO Auto-generated method stub
+		studentCollections.put(studentCollections.size()+1, student);
+		return student;
+	}
+
 }

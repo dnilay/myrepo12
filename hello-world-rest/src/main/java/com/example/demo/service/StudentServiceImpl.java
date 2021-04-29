@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.Collection;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -26,6 +27,14 @@ public class StudentServiceImpl implements StudentService{
 	public Collection<Student> displayAllStudent() {
 		// TODO Auto-generated method stub
 		return studentDao.displayAllStudent();
+	}
+
+
+	@Override
+	public Student createStudent(Student student) {
+		// TODO Auto-generated method stub
+		student.setStudentId(UUID.randomUUID().toString());
+		return studentDao.createStudent(student);
 	}
 
 }
