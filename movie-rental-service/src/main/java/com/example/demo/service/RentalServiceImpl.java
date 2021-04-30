@@ -34,6 +34,13 @@ public class RentalServiceImpl implements RentalService {
 	@Override
 	public Rental findByRentalId(String rentalId) {
 		// TODO Auto-generated method stub
+		
+		Rental rental=rentalRepository.findByRentalId(rentalId);
+		if(rental==null)
+		{
+			throw new RentalNotFoundException("rental not found with the rentalId: "+rentalId);
+		}
+		
 		return rentalRepository.findByRentalId(rentalId);
 	}
 
