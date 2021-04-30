@@ -6,5 +6,6 @@ import com.example.demo.shared.RentalDto;
 public interface RentalService {
 	
 	public Rental createRental(RentalDto rentalDto);
+	public Rental findByRentalId(String rentalId);
 
 }

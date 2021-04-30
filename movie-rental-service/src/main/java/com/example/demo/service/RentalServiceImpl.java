@@ -30,4 +30,11 @@ public class RentalServiceImpl implements RentalService {
 		return rentalRepository.save(rental);
 	}
 
+
+	@Override
+	public Rental findByRentalId(String rentalId) {
+		// TODO Auto-generated method stub
+		return rentalRepository.findByRentalId(rentalId);
+	}
+
 }
