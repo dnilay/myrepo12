@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.UUID;
 
 import org.modelmapper.ModelMapper;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.Rental;
@@ -59,5 +64,40 @@ public class RentalController {
 		Rental rental=rentalService.findByRentalId(rentalId);
 		return new ResponseEntity<RentalResponseModel>(modelMapper.map(rental, RentalResponseModel.class),HttpStatus.OK);
 	}
+	
+	@GetMapping("/rentals")
+	public ResponseEntity<List<RentalResponseModel>> displayAll()
+	{
+		List<RentalResponseModel> responseList=new ArrayList<RentalResponseModel>();
+		List<Rental> rentalList=rentalService.displayAllRental();
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		Iterator<Rental> i=rentalList.iterator();
+		
+		while(i.hasNext())
+		{
+			
+			responseList.add(modelMapper.map(i.next(), RentalResponseModel.class));
+		}
+		return ResponseEntity.ok(responseList);
+	}
+	
+	@PutMapping("/rentals/{rentalId}")
+	public ResponseEntity<RentalResponseModel> updateRental(@PathVariable("rentalId") String rentalId,@RequestParam("movieName") String movieName)
+	{
+	
+		Rental rental=rentalService.updateRental(rentalId, movieName);
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return ResponseEntity.ok(modelMapper.map(rental, RentalResponseModel.class));
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
