@@ -10,7 +10,8 @@ public interface RentalService {
 	public Rental createRental(RentalDto rentalDto);
 	public Rental findByRentalId(String rentalId);
 	public List<Rental> displayAllRental();
-	
 	public Rental updateRental(String rentalId,String movieName);
+	
+	public Rental deleteRental(String rentalId);
 
 }

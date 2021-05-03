@@ -11,6 +11,7 @@ import org.modelmapper.spi.ErrorMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -89,6 +90,14 @@ public class RentalController {
 		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 		return ResponseEntity.ok(modelMapper.map(rental, RentalResponseModel.class));
 		
+	}
+	
+	@DeleteMapping("/rentals/{rentalId}")
+	public ResponseEntity<RentalResponseModel> deleteRental(@PathVariable("rentalId") String rentalId)
+	{
+		Rental rental=rentalService.deleteRental(rentalId);
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+		return new ResponseEntity<RentalResponseModel>(modelMapper.map(rental, RentalResponseModel.class),HttpStatus.OK);
 	}
 	
 	
